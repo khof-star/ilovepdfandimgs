@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}My PDF Tools{% endblock %}</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  >
+  <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  rel="stylesheet"
+>
+
+
+  <style>
+    .navbar-brand i {
+      color: red;
+      margin-right: 5px;
+    }
+    .navbar-nav .nav-link {
+      font-weight: bold;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+      background-color: #f0f0f0;
+      color: #e53935;
+    }
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #f0f0f0;
+      color: #e53935;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <!-- Brand / Home link -->
+      <a class="navbar-brand" href="/home">
+        <i></i> I❤PDF&IMG
+      </a>
+
+      <!-- Mobile toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/merge">Merge PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/split">Split PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/compress">Compress PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/compressimage">Compress IMAGE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jpgtopdf">JPG to PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/wordtopdf">Word to PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/powerpointtopdf">PowerPoint to PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/exceltopdf">Excel to PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/htmltopdf">HTML to PDF</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pdftojpg">PDF to JPG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pdftoword">PDF to Word</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pdftoexcel">PDF to Excel</a>
+          </li>
+           
+
+          <!-- Convert PDF Dropdown -->
+           
+              </div>
+            </div>
+          </li>
+
+          <!-- All PDF Tools Dropdown -->
+           
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container mt-4">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+<footer class="bg-light mt-5">
+  <div class="container py-4">
+    <div class="row">
+      <!-- Section 1 -->
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold text-primary">I❤LOVEPDF&IMG</h6>
+        <ul class="list-unstyled">
+          <li><a href="/home" class="text-decoration-none text-dark">Home</a></li>
+          <li><a href="/features" class="text-decoration-none text-dark">Features</a></li>
+          <li><a href="/faq" class="text-decoration-none text-dark">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold text-primary">PRODUCT</h6>
+        <ul class="list-unstyled">
+          <li><a href="/developers" class="text-decoration-none text-dark">Developers</a></li>
+          <li><a href="/wordpress plugin" class="text-decoration-none text-dark">WordPress Plugin</a></li>
+        </ul>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold text-primary">COMPANY</h6>
+        <ul class="list-unstyled">
+          <li><a href="/ourstory" class="text-decoration-none text-dark">Our Story</a></li>
+          <li><a href="/daily_blog" class="text-decoration-none text-dark">Blog</a></li>
+          <li><a href="/legal_privacy" class="text-decoration-none text-dark">Legal & Privacy</a></li>
+          <li><a href="/contactus" class="text-decoration-none text-dark">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div class="mb-2">
+        <i class="bi bi-globe"></i>
+        <span>English</span>
+        <i class="bi bi-caret-down-fill"></i>
+      </div>
+
+      <div class="text-muted small mb-2 mb-md-0">
+        © i❤LovePDF&IMG 2025 ® - Your PDF AND Image Editor
+      </div>
+
+      <div>
+        <a href="#" class="text-dark me-3"><i class="bi bi-x"></i></a>
+        <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TaazaTime Footer Below -->
+<footer style="background-color: #f5f8ff; padding: 2rem 1rem; border-top: 1px solid #ddd; font-family: sans-serif;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2rem; max-width: 1200px; margin: auto;">
+    
+    <!-- Left: Logo and Hindi text -->
+    <div style="flex: 1; min-width: 300px;">
+       
+      <div style="margin-top: 1rem; font-size: 0.8rem;">
+        <a href="/aboutus">About Us</a> | 
+        <a href="/contactus">Contact Us</a> | 
+        <a href="disclaimer">Disclaimer</a> | 
+        <a href="privacypolicy">Privacy Policy</a> |  
+      </div>
+    </div>
+
+     
+
+    <!-- Right: Social Icons -->
+    <div style="flex: 1; min-width: 250px;">
+      <h5 style="margin-bottom: 10px;">Follow Us On Social Media</h5>
+      <p style="font-size: 0.85rem; color: #666;">Get Latest Update On Social Media</p>
+      <div style="font-size: 1.5rem;">
+        <a href="#" style="margin-right: 10px; color: #3b5998;"><i class="bi bi-facebook"></i></a>
+        <a href="#" style="margin-right: 10px; color: #25d366;"><i class="bi bi-whatsapp"></i></a>
+        <a href="#" style="margin-right: 10px; color: #0088cc;"><i class="bi bi-telegram"></i></a>
+        <a href="#" style="margin-right: 10px; color: #e1306c;"><i class="bi bi-instagram"></i></a>
+        <a href="#" style="margin-right: 10px; color: #1877f2;"><i class="bi bi-facebook-messenger"></i></a>
+        <a href="#" style="margin-right: 10px; color: #ff0000;"><i class="bi bi-youtube"></i></a>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 1rem; color: #888;">© 2025 I❤pdf&img.com All rights reserved</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Styles & Scripts -->
+<style>
+  .tool-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(148, 4, 4, 0.521);
+  }
+</style>
+
+<!-- Bootstrap JS & Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

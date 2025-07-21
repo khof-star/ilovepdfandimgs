@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Protect PDF{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f9f9fb;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .protect-container {
+    max-width: 600px;
+    margin: 5rem auto;
+    text-align: center;
+  }
+  .protect-container h1 {
+    font-weight: 700;
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+  }
+  .protect-container p {
+    color: #555;
+    font-size: 1rem;
+  }
+  .select-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #d93025;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    padding: 0.9rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+  }
+  .select-button:hover {
+    background: #b71c1c;
+  }
+  .drop-hint {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+</style>
+
+<div class="protect-container">
+  <h1>Protect PDF file</h1>
+  <p>
+    Encrypt your PDF with a password to keep sensitive data confidential.
+  </p>
+
+  <form id="upload-form" method="POST" action="{{ url_for('protect_upload') }}" enctype="multipart/form-data">
+    <button type="button" id="selectButton" class="select-button">
+      Select PDF file
+    </button>
+    <input
+      type="file"
+      id="fileInput"
+      name="pdf_file"
+      accept="application/pdf"
+      hidden
+    >
+    <div class="drop-hint">or drop PDF here</div>
+  </form>
+</div>
+
+<script>
+  const fileInput = document.getElementById("fileInput");
+  const form = document.getElementById("upload-form");
+
+  document.getElementById("selectButton").addEventListener("click", function() {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener("change", function() {
+    if (fileInput.files.length > 0) {
+      form.submit();
+    }
+  });
+</script>
+{% endblock %}

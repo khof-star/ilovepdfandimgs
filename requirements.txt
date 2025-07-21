@@ -1,0 +1,11 @@
+flask
+gunicorn
+PyPDF2
+img2pdf
+pdf2image
+Pillow
+pdfplumber
+python-docx
+python-pptx
+pandas
+PyMuPDF

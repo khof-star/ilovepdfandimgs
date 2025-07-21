@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compression Complete</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+    .success-icon {
+      font-size: 60px;
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+    .stats {
+      margin: 20px auto;
+      display: inline-block;
+      text-align: left;
+    }
+    .download-btn {
+      background: #e53935;
+      color: white;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+    }
+    .download-btn:hover {
+      background: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-icon">✅</div>
+  <h2>PDF Compressed Successfully!</h2>
+  <p>Your PDF is now <strong>{{ reduction_ratio }} smaller</strong>:</p>
+  <div class="stats border rounded p-3 bg-white">
+    <div><strong>Original Size:</strong> {{ original_size }}</div>
+    <div><strong>Compressed Size:</strong> {{ compressed_size }}</div>
+  </div>
+  <div class="mt-4">
+    <a href="{{ url_for('download_compressed', filename=download_filename) }}" class="download-btn">
+      ⬇️ Download Compressed PDF
+    </a>
+  </div>
+</body>
+</html>

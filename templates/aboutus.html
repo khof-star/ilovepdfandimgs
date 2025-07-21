@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - ilovepdf&img.com{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="text-center fw-bold mb-4">About Us</h1>
+  <p class="lead text-center text-muted mb-5">
+    Simple. Fast. Private. And Forever Free. Welcome to <strong>ilovepdf&img.com</strong>
+  </p>
+
+  <div class="row justify-content-center align-items-center mb-5">
+    <div class="col-md-6">
+      <h3 class="fw-semibold">👨‍💻 Self-Made by a Passionate Developer</h3>
+      <p>
+        This platform is lovingly crafted by an independent developer who believes everyone should have access to powerful PDF and image tools without paying a single rupee.
+        Built with care, every tool you use is <strong>privacy-safe</strong>, <strong>free</strong>, and designed with a clean experience.
+      </p>
+    </div>
+    <div class="col-md-5 text-center">
+      <img src="{{ url_for('static', filename='images/RAHUL.jpg') }}" class="img-fluid rounded shadow" alt="Founder">
+      <p class="mt-2 text-muted">Founder of ilovepdf&img.com</p>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <h3 class="fw-semibold">🎯 Our Mission</h3>
+    <ul>
+      <li><strong>100% Free Tools:</strong> No hidden fees. No premium plans.</li>
+      <li><strong>Zero Tracking:</strong> We don’t sell or collect your personal data.</li>
+      <li><strong>Simple & Fast:</strong> Upload → Convert → Done. That’s it.</li>
+      <li><strong>Privacy First:</strong> Files auto-delete within 2 hours. No storage.</li>
+    </ul>
+  </div>
+
+  <div class="mb-5">
+    <h3 class="fw-semibold">🔧 What You Can Do</h3>
+    <p>On ilovepdfandimg.com, you can:</p>
+    <ul>
+      <li>Convert PDF to JPG or vice versa</li>
+      <li>Compress PDFs or Images</li>
+      <li>Protect or Unlock PDFs</li>
+      <li>Merge, Split, or Organize PDFs</li>
+      <li>All tools are available <strong>without sign-up</strong> or payment</li>
+    </ul>
+  </div>
+
+  <div class="text-center mt-5">
+    <h4 class="fw-bold mb-3">Thank You for Using ilovepdfandimg.com 💙</h4>
+    <p class="text-muted">Made with ❤️ to help you stay fast, free, and private online.</p>
+  </div>
+</div>
+{% endblock %}

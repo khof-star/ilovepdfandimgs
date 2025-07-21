@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - ilovepdfandimage.com{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="text-center fw-bold mb-5">Frequently Asked Questions (FAQ)</h1>
+
+  <div class="accordion" id="faqAccordion">
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="q1">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+          1. Is ilovepdfandimage.com really free?
+        </button>
+      </h2>
+      <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Yes, all features on ilovepdfandimage.com are 100% free to use. We do not charge for uploads, conversions, or downloads — no hidden fees, no premium subscriptions.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="q2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+          2. How long are my files stored?
+        </button>
+      </h2>
+      <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          All uploaded files are automatically deleted from our servers within 2 hours. This ensures your privacy and keeps your data secure.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="q3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+          3. Do I need to sign up or create an account?
+        </button>
+      </h2>
+      <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          No registration is needed. You can use all our tools — including conversions, compressions, merges, and protections — anonymously and instantly.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="q4">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
+          4. Is it safe to upload sensitive documents?
+        </button>
+      </h2>
+      <div id="a4" class="accordion-collapse collapse" aria-labelledby="q4" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Yes. Files are encrypted via HTTPS and are not stored permanently. We never view or analyze your files. Privacy is our promise.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="q5">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a5" aria-expanded="false" aria-controls="a5">
+          5. Can I use this on mobile?
+        </button>
+      </h2>
+      <div id="a5" class="accordion-collapse collapse" aria-labelledby="q5" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Absolutely! ilovepdfandimage.com is fully mobile-optimized. You can use it on smartphones, tablets, or desktops without any issue.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="q6">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a6" aria-expanded="false" aria-controls="a6">
+          6. Do you add watermarks to files?
+        </button>
+      </h2>
+      <div id="a6" class="accordion-collapse collapse" aria-labelledby="q6" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Never. All tools deliver clean, watermark-free output. Our platform is fully free and user-first.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

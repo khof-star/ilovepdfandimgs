@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Protect PDF{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background: #f9f9fb;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .page-container {
+    display: flex;
+    padding-top: 2rem;
+  }
+  .preview-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .preview-container img {
+    width: 150px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    border-radius: 4px;
+  }
+  .preview-container p {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    color: #555;
+    word-break: break-all;
+  }
+  .sidebar {
+    width: 350px;
+    background: white;
+    border-left: 1px solid #ddd;
+    min-height: calc(100vh - 56px);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .sidebar h4 {
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+  }
+  .sidebar p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .input-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .input-group i.bi-lock {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #777;
+  }
+  .input-group i.eye-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    color: #d93025;
+    cursor: pointer;
+  }
+  .input-group input {
+    width: 100%;
+    padding: 0.65rem 2.5rem 0.65rem 2.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .submit-button {
+    margin-top: 1.5rem;
+  }
+  .submit-button button {
+    background: #d93025;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 0.85rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .submit-button button:hover {
+    background: #b71c1c;
+  }
+  /* Floating Plus Button */
+.fab {
+  position: fixed;
+  top: 110px;
+  left: 1200px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e53935;
+  color: white;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+     }
+  .fab:hover {
+    background: #b71c1c;
+  }
+</style>
+
+<div class="page-container">
+  <!-- Left Preview -->
+  <div class="preview-container">
+    <div>
+      <img src="{{ url_for('static', filename='pdf_icon.png') }}" alt="PDF file">
+      <p>{{ filename }}</p>
+    </div>
+  </div>
+
+  <!-- Sidebar Form -->
+  <form method="POST" action="{{ url_for('protect_process') }}" class="sidebar">
+    <h4>Protect PDF</h4>
+    <p>Set a password to protect your PDF file</p>
+    <input type="hidden" name="filename" value="{{ filename }}">
+    <div class="input-group">
+      <i class="bi bi-lock"></i>
+      <input type="password" name="password1" placeholder="Type password" required>
+      <i class="bi bi-eye eye-toggle"></i>
+    </div>
+    <div class="input-group">
+      <i class="bi bi-lock"></i>
+      <input type="password" name="password2" placeholder="Repeat password" required>
+      <i class="bi bi-eye eye-toggle"></i>
+    </div>
+
+    <div class="submit-button">
+      <button type="submit">
+        <i class="bi bi-lock"></i> Protect PDF
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Floating Plus Button -->
+<div class="fab" onclick="document.getElementById('fileInput').click();">
+  <i class="bi bi-plus"></i>
+</div>
+<input type="file" id="fileInput" class="d-none" multiple accept="application/pdf" onchange="addFiles(this.files)">
+
+<script>
+  // Toggle password visibility
+  document.querySelectorAll('.eye-toggle').forEach(icon => {
+    icon.addEventListener('click', () => {
+      const input = icon.previousElementSibling;
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('bi-eye');
+      icon.classList.toggle('bi-eye-slash');
+    });
+  });
+
+  function addFiles(files) {
+    if (files.length) {
+      alert(files.length + " more file(s) selected.");
+      // Implement logic to handle new files if needed
+    }
+  }
+</script>
+{% endblock %}

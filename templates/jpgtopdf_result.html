@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}Image to PDF Options{% endblock %}
+
+{% block content %}
+
+{# 
+=====================================================
+  🎯 HOW THIS WORKS – Reference Notes
+  --------------------------------------------------
+  1️⃣ Orientation buttons (Portrait / Landscape):
+      - Just set hidden input #orientationInput
+      - They do NOT rotate the preview image.
+      - They determine the page size in PDF.
+
+  2️⃣ Margin buttons:
+      - Same principle as orientation.
+
+  3️⃣ Page size dropdown:
+      - Sets #pageSizeInput hidden field.
+
+  4️⃣ "Merge all images" checkbox:
+      - If checked, Flask knows to merge files.
+
+  5️⃣ When you click Convert to PDF:
+      - Submits POST with all inputs.
+      - Flask reads:
+          orientation = request.form["orientation"]
+          margin = request.form["margin"]
+          page_size = request.form["page_size"]
+      - Generates PDF accordingly.
+=====================================================
+#}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: #f9f9fb;
+  }
+  .page-container {
+    display: flex;
+    gap: 20px;
+    padding: 2rem;
+    flex-wrap: wrap;
+  }
+  .file-preview {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .file-card {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 200px;
+    width: 100%;
+    height: 20%;
+  }
+  .file-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .sidebar {
+    width: 500px;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    padding: 1.5rem;
+    min-height: calc(100vh - 92px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sidebar-content {
+    flex: 1;
+  }
+  .sidebar h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .sidebar p {
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  .sidebar label {
+    display: block;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+  .convert-button {
+    margin-top: 20px;
+    width: 100%;
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .convert-button:hover {
+    background: #b71c1c;
+  }
+</style>
+
+<form method="POST" action="{{ url_for('download_jpg_pdf', filename=pdf_filename) }}">
+  <input type="hidden" name="filename" value="{{ filename }}">
+  <input type="hidden" id="orientationInput" name="orientation" value="portrait">
+  <input type="hidden" id="marginInput" name="margin" value="none">
+  <input type="hidden" id="pageSizeInput" name="page_size" value="A4">
+
+  <div class="page-container">
+    <!-- File Preview -->
+    <div class="file-preview">
+      <div class="file-card">
+        <img src="{{ url_for('static', filename=thumbnail) }}" alt="Image preview">
+        <div class="text-muted">{{ filename }}</div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <h5>Image to PDF Options</h5>
+
+        <!-- Orientation -->
+        <label>Page orientation</label>
+        <div class="btn-group w-100" role="group">
+          <button type="button" class="btn btn-outline-secondary active" onclick="setOrientation('portrait', this)">Portrait</button>
+          <button type="button" class="btn btn-outline-secondary" onclick="setOrientation('landscape', this)">Landscape</button>
+        </div>
+
+        <!-- Page size -->
+        <label for="pageSizeSelect">Page size</label>
+        <select class="form-select" id="pageSizeSelect" onchange="document.getElementById('pageSizeInput').value=this.value">
+          <option value="A4">A4 (210x297 mm)</option>
+          <option value="Letter">Letter (216x279 mm)</option>
+        </select>
+
+        <!-- Margin -->
+        <label>Margin</label>
+        <div class="btn-group w-100" role="group">
+          <button type="button" class="btn btn-outline-secondary active" onclick="setMargin('none', this)">No margin</button>
+          <button type="button" class="btn btn-outline-secondary" onclick="setMargin('small', this)">Small</button>
+          <button type="button" class="btn btn-outline-secondary" onclick="setMargin('big', this)">Big</button>
+        </div>
+
+        <!-- Merge checkbox -->
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" name="merge" id="mergeCheckbox" checked>
+          <label class="form-check-label" for="mergeCheckbox">
+            Merge all images in one PDF file
+          </label>
+        </div>
+      </div>
+
+      <!-- Convert Button -->
+      <button type="submit" class="convert-button mt-3">
+        <i class="bi bi-file-earmark-pdf"></i> Convert to PDF
+      </button>
+    </div>
+  </div>
+</form>
+
+<script>
+function setOrientation(value, btn) {
+  document.getElementById('orientationInput').value = value;
+  document.querySelectorAll('.sidebar .btn-group:nth-of-type(1) .btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setMargin(value, btn) {
+  document.getElementById('marginInput').value = value;
+  document.querySelectorAll('.sidebar .btn-group:nth-of-type(2) .btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

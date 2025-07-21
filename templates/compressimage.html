@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compress Image Files</title>
+
+  {% extends "base.html" %}
+
+  {% block title %}Compress Images - My Image Tools{% endblock %}
+
+  {% block content %}
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+    .compress-container {
+      text-align: center;
+      padding-top: 60px;
+    }
+    .compress-title {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .compress-subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .compress-button {
+      background-color: #e90000;
+      color: white;
+      font-size: 1.2rem;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+    .compress-button:hover {
+      background-color: #c62828;
+    }
+    .drop-text {
+      margin-top: 12px;
+      color: #777;
+      font-size: 0.95rem;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+
+  <div class="compress-container">
+    <h2 class="compress-title">Compress IMAGES</h2>
+    <p class="compress-subtitle">
+      Reduce file size while preserving quality.
+    </p>
+    <form action="/compressimage_uploaded" method="post" enctype="multipart/form-data">
+      <label for="compress_images" class="compress-button">
+        Select IMAGE file
+      </label>
+      <input id="compress_images" type="file" name="images" accept="image/*" required onchange="this.form.submit()">
+    </form>
+    <p class="drop-text">or drop IMAGE here</p>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  {% endblock %}
+</head>
+<body>
+</body>
+</html>

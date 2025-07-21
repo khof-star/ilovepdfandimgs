@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Legal & Privacy{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f9f9fb;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+  }
+
+  .title {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    color: #666;
+  }
+
+  .card {
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .card img {
+    width: 50px;
+    margin-bottom: 15px;
+  }
+
+  .card h5 {
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  .card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #e63946;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .card a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container">
+  <div class="title">Data Security and Privacy Policies</div>
+  <div class="subtitle">In-depth insight into our Privacy and Security Framework</div>
+
+  <div class="row g-4 justify-content-center">
+    <div class="col-md-6 col-lg-3">
+      <div class="card">
+         
+        <h5>About Us</h5>
+        <p>We meet ISO/IEC 27001 standards for data protection and secure file handling.</p>
+        <a href="/aboutus">See more</a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card">
+       
+        <h5>Contact Us</h5>
+        <p>Your uploaded files are encrypted and removed within 2 hours to ensure privacy.</p>
+        <a href="/contactus">See more</a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card">
+         
+        <h5>Disclaimer</h5>
+        <p>Understand the terms and conditions for using our services and features.</p>
+        <a href="/disclaimer">See more</a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card">
+         
+        <h5>Privacy Policy</h5>
+        <p>We comply with European cookie laws and explain how we use cookies clearly.</p>
+        <a href="/privacypolicy">See more</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My PDF Tools - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .tool-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .tool-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .tool-icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #e53935;
+    }
+    .navbar-brand {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block title %}Home - My PDF Tools{% endblock %}
+
+{% block content %}
+<div class="text-center py-4">
+  <h1 class="fw-bold">Every tool you need to work with PDFs in one place</h1>
+  <p class="text-muted">
+    All tools are 100% FREE and easy to use. Merge, split, compress, convert, rotate, unlock and protect PDFs.
+  </p>
+</div>
+
+<div class="container">
+  <div class="row g-4">
+    <div class="col-md-3">
+      <a href="/merge" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-files" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Merge PDF</h5>
+          <p class="text-muted">Combine multiple PDFs into a single file.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/split" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-scissors" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Split PDF</h5>
+          <p class="text-muted">Extract pages into separate PDFs.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/compress" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-arrow-down-circle" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Compress PDF</h5>
+          <p class="text-muted">Reduce PDF file size easily.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/rotate" class="text-decoration-none text-dark">
+      <div class="card h-100 shadow-sm text-center p-4 tool-card">
+      <i class="bi bi-arrow-repeat" style="font-size: 2rem; color: #e53935;"></i>
+      <h5 class="mt-3 fw-bold">Rotate Image</h5>
+      <p class="text-muted">Rotate your images easily.</p>
+      </div>
+     </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="/protect" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-lock" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Protect PDF</h5>
+          <p class="text-muted">Encrypt your PDFs with a password.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="#" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-unlock" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Unlock PDF</h5>
+          <p class="text-muted">Remove password protection from PDFs.</p>
+        </div>
+      </a>
+    </div>
+     
+    <div class="col-md-3">
+      <a href="/jpgtopdf" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-file-earmark" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">JPG to PDF</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="wordtopdf" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-file-earmark-richtext" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Word to PDF</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/powerpointtopdf" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-scissors" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">PowerPoint to PDF</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/exceltopdf" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-files" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">Excel to PDF</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/htmltopdf" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-arrow-down-circle" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">HTML to PDF</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/pdftojpg" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-arrow-left-right" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">PDF to JPG</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/pdftoword" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-pencil-square" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">PDF to Word</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="/pdftoexcel" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm text-center p-4 tool-card">
+          <i class="bi bi-pencil-square" style="font-size: 2rem; color: #e53935;"></i>
+          <h5 class="mt-3 fw-bold">PDF to Excel</h5>
+          <p class="text-muted">Add text, images, or annotations.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+ 
+ 
+
+<style>
+  .tool-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(148, 4, 4, 0.521);
+  }
+</style>
+{% endblock %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

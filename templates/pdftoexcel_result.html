@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}PDF to Excel Result{% endblock %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  body {
+    background: #f9f9fb;
+  }
+  .page-container {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  .file-preview {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+  }
+  .file-card {
+    position: relative;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 200px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .file-icon {
+    font-size: 3rem;
+    color: #d32f2f; /* Red PDF icon */
+    margin-bottom: 10px;
+  }
+  .tooltip-box {
+    position: absolute;
+    top: 380px;
+    right: 360px;
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    display: none;
+    z-index: 10;
+  }
+  .file-actions {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: none;
+  }
+  .file-actions i {
+    cursor: pointer;
+    margin-left: 5px;
+    color: #666;
+  }
+  .sidebar {
+    width: 500px;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    padding: 1.5rem;
+    min-height: calc(100vh - 92px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sidebar-content {
+    text-align: center;
+  }
+  .convert-button {
+    width: 100%;
+    background: #217346; /* Excel green */
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .convert-button:hover {
+    background: #155c2e;
+  }
+</style>
+
+<form method="POST" action="{{ url_for('convert_pdf_to_excel', filename=filename) }}">
+  <input type="hidden" name="filename" value="{{ filename }}">
+
+  <div class="page-container">
+    <!-- File Preview -->
+    <div class="file-preview">
+      {% if filesize %}
+      <div class="tooltip-box" id="tooltip">{{ filesize }}</div>
+      {% endif %}
+      <div class="file-card" id="fileCard">
+        <div class="file-icon">
+          <i class="bi bi-file-earmark-pdf-fill"></i>
+        </div>
+        <div class="text-muted">{{ filename }}</div>
+        <div class="file-actions" id="fileActions">
+          <i class="bi bi-arrow-clockwise" title="Rotate" onclick="rotateFile(this)"></i>
+          <i class="bi bi-x" title="Remove" onclick="removeFile(this)"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <h5>PDF to Excel</h5>
+        <p>Your PDF is ready to convert to an Excel (.xlsx) file.</p>
+      </div>
+      <button type="submit" class="convert-button mt-3">
+        <i class="bi bi-file-earmark-excel"></i> Convert to Excel
+      </button>
+    </div>
+  </div>
+</form>
+
+<script>
+  const fileCard = document.getElementById("fileCard");
+  const tooltip = document.getElementById("tooltip");
+  const actions = document.getElementById("fileActions");
+
+  fileCard.addEventListener("mouseenter", () => {
+    if (tooltip) tooltip.style.display = "block";
+    if (actions) actions.style.display = "block";
+  });
+
+  fileCard.addEventListener("mouseleave", () => {
+    if (tooltip) tooltip.style.display = "none";
+    if (actions) actions.style.display = "none";
+  });
+
+  function rotateFile(icon) {
+    const card = icon.closest(".file-card");
+    const img = card.querySelector("img");
+    if (!img) return;
+    let currentRotation = parseInt(img.dataset.rotation || "0");
+    currentRotation = (currentRotation + 90) % 360;
+    img.style.transform = `rotate(${currentRotation}deg)`;
+    img.dataset.rotation = currentRotation;
+  }
+
+  function removeFile(icon) {
+    const card = icon.closest(".file-card");
+    card.remove();
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

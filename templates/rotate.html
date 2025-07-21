@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Rotate IMAGE{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f9f9fb;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .rotate-container {
+    max-width: 600px;
+    margin: 5rem auto;
+    text-align: center;
+  }
+  .rotate-container h1 {
+    font-weight: 700;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+  .rotate-container p {
+    color: #555;
+    font-size: 1rem;
+  }
+  .rotate-container p a {
+    color: #4285f4;
+    text-decoration: none;
+    font-weight: 800;
+  }
+  .rotate-container p a:hover {
+    text-decoration: underline;
+  }
+  .select-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #4285f4;
+    color: #fff;
+    border: none;
+    font-weight: 1600;
+    width: 290px;
+    height: 80px;
+    padding: 0.9rem 1.5rem;
+    border-radius: 6px;
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+  }
+  .select-button:hover {
+    background: #3367d6;
+  }
+  .drop-hint {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+</style>
+
+<div class="rotate-container">
+  <h1>Rotate IMAGE</h1>
+  <p>
+    Rotate <a href="#">JPG</a>, <a href="#">PNG</a>, or <a href="#">GIF</a>.<br>
+    Rotate only images with portrait or landscape orientation at once.
+  </p>
+
+  <form id="upload-form" method="POST" action="{{ url_for('rotate_upload') }}" enctype="multipart/form-data">
+    <button type="button" id="selectButton" class="select-button">
+      Select images
+    </button>
+    <input
+      type="file"
+      id="fileInput"
+      name="images"
+      accept="image/*"
+      hidden
+      multiple
+    >
+    <div class="drop-hint">or drop images here</div>
+  </form>
+</div>
+
+<script>
+  const fileInput = document.getElementById("fileInput");
+  const form = document.getElementById("upload-form");
+
+  document.getElementById("selectButton").addEventListener("click", function() {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener("change", function() {
+    if (fileInput.files.length > 0) {
+      form.submit();
+    }
+  });
+</script>
+{% endblock %}

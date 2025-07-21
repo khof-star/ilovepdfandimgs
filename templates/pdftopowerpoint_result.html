@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}PDF to JPG - Results{% endblock %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: #f9f9fb;
+  }
+  .page-container {
+    display: flex;
+    gap: 20px;
+    padding: 2rem;
+    flex-wrap: wrap;
+  }
+  .file-preview {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .file-card {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    width: 160px;
+  }
+  .file-card img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .sidebar {
+    width: 300px;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    padding: 1.5rem;
+    min-height: calc(100vh - 92px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .sidebar-content {
+    text-align: center;
+  }
+  .download-all {
+    width: 100%;
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .download-all:hover {
+    background: #1259a3;
+  }
+</style>
+
+<div class="page-container">
+  <!-- Thumbnails -->
+  <div class="file-preview">
+    {% for jpg in jpg_files %}
+    <div class="file-card">
+      <img src="{{ url_for('static', filename=jpg.thumbnail) }}" alt="Page {{ loop.index }}">
+      <div class="text-muted">Page {{ loop.index }}</div>
+      <a href="{{ url_for('download_jpg_image', filename=jpg.filename) }}" class="btn btn-sm btn-outline-primary mt-2">
+        Download JPG
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-content">
+      <h5>PDF to JPG</h5>
+      <p>{{ filename }} has been converted into {{ jpg_files|length }} JPG {{ 'image' if jpg_files|length == 1 else 'images' }}.</p>
+      <a href="{{ url_for('download_all_jpg_zip', filename=filename) }}" class="download-all mt-3">
+        <i class="bi bi-download"></i> Download All as ZIP
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

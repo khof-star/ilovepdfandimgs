@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}Rotate IMAGE{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f9f9fb;
+  }
+  .rotate-container {
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+    padding: 6rem 4rem;
+    gap:19rem;
+  }
+  .rotate-sidebar {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 5rem;
+    width: 620px;
+    height: 820px;
+  }
+  .rotate-sidebar h4 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .rotate-sidebar .alert {
+    font-size: 0.9rem;
+  }
+  .select-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .select-group button {
+    border: 1px solid #ddd;
+    background: #f9f9fb;
+    font-weight: 500;
+    padding: 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .select-group button.active {
+    border-color: #4285f4;
+    background: #e8f0fe;
+    color: #4285f4;
+  }
+  .rotate-controls {
+    margin-top: 1.5rem;
+  }
+  .rotate-controls button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f9f9fb;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .rotate-controls button:hover {
+    background: #f0f0f0;
+  }
+  .reset-link {
+    font-size: 0.9rem;
+    color: #4285f4;
+    text-decoration: none;
+  }
+  .reset-link:hover {
+    text-decoration: underline;
+  }
+  .rotate-footer {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .rotate-footer button {
+    background: #4285f4;
+    border: none;
+    color: #fff;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  .rotate-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rotate-preview img {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }
+  .rotate-preview p {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+  }
+</style>
+
+<div class="rotate-container">
+  <!-- Image preview area -->
+  <div class="rotate-preview">
+    <div>
+      <img id="previewImage" src="{{ image_url }}" alt="{{ filename }}">
+      <p>{{ filename }}</p>
+    </div>
+  </div>
+
+  <!-- Right sidebar controls -->
+  <div class="rotate-sidebar">
+    <h4>Rotate IMAGE</h4>
+    <div class="alert alert-primary">
+      Mouse over IMAGE file below and a icon will appear, click on it to rotate your IMAGES.
+    </div>
+
+    <h6>Select files to rotate:</h6>
+    <div class="select-group">
+      <button class="active">All</button>
+      <button>Portrait</button>
+      <button>Landscape</button>
+    </div>
+
+    <h6 class="mt-3">Rotation <a href="#" id="resetRotation" class="reset-link float-end">Reset all</a></h6>
+    <div class="rotate-controls">
+      <button id="rotateRight">
+        <i class="bi bi-arrow-clockwise"></i> RIGHT
+      </button>
+      <button id="rotateLeft">
+        <i class="bi bi-arrow-counterclockwise"></i> LEFT
+      </button>
+    </div>
+
+    <div class="rotate-footer">
+      <button>
+        <i class="bi bi-arrow-right-circle"></i> Rotate IMAGES
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const previewImage = document.getElementById("previewImage");
+  let currentRotation = 0;
+
+  document.getElementById("rotateRight").addEventListener("click", () => {
+    currentRotation = (currentRotation + 90) % 360;
+    previewImage.style.transform = `rotate(${currentRotation}deg)`;
+  });
+
+  document.getElementById("rotateLeft").addEventListener("click", () => {
+    currentRotation = (currentRotation - 90 + 360) % 360;
+    previewImage.style.transform = `rotate(${currentRotation}deg)`;
+  });
+
+  document.getElementById("resetRotation").addEventListener("click", (e) => {
+    e.preventDefault();
+    currentRotation = 0;
+    previewImage.style.transform = "rotate(0deg)";
+  });
+
+  document.querySelector(".rotate-footer button").addEventListener("click", () => {
+    downloadRotatedImage();
+  });
+
+  function downloadRotatedImage() {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = previewImage.src;
+
+    img.onload = () => {
+      // Set canvas size depending on rotation
+      if (currentRotation % 180 === 0) {
+        canvas.width = img.width;
+        canvas.height = img.height;
+      } else {
+        canvas.width = img.height;
+        canvas.height = img.width;
+      }
+
+      // Move origin to center
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((currentRotation * Math.PI) / 180);
+      // Draw image offset by half width/height
+      ctx.drawImage(img, -img.width / 2, -img.height / 2);
+
+      // Download
+      const link = document.createElement("a");
+      link.download = "rotated-image.png";
+      link.href = canvas.toDataURL();
+      link.click();
+    };
+  }
+</script>
+{% endblock %}
